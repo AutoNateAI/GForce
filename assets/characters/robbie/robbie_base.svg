@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Robbie (Robotics) -->
+  <g id="robbie_base">
+    <!-- Spaceship body -->
+    <g id="spaceship">
+      <!-- Main hull -->
+      <path id="hull"
+            d="M120 280
+               L200 220
+               L280 280
+               L260 340
+               L140 340
+               Z"
+            fill="#455A64"
+            stroke="#263238"
+            stroke-width="4"/>
+      
+      <!-- Circuit patterns -->
+      <g id="ship_circuits" stroke="#78909C" stroke-width="2">
+        <path d="M160 300 h30 v20 h40" fill="none"/>
+        <path d="M180 290 v30 h60" fill="none"/>
+        <path d="M220 280 h-40 v40" fill="none"/>
+      </g>
+
+      <!-- Engine lights -->
+      <g id="engines">
+        <circle cx="160" cy="330" r="8" fill="#4FC3F7"/>
+        <circle cx="200" cy="330" r="8" fill="#4FC3F7"/>
+        <circle cx="240" cy="330" r="8" fill="#4FC3F7"/>
+      </g>
+    </g>
+
+    <!-- Robot head -->
+    <g id="head">
+      <!-- Head casing -->
+      <rect id="head_case"
+            x="160" y="160"
+            width="80" height="100"
+            fill="#455A64"
+            stroke="#263238"
+            stroke-width="4"
+            rx="10"/>
+      
+      <!-- Circuit patterns -->
+      <g id="circuits" stroke="#78909C" stroke-width="2">
+        <path d="M170 180 h20 v10 h30" fill="none"/>
+        <path d="M170 200 h60" fill="none"/>
+        <path d="M170 220 h20 v-10 h30" fill="none"/>
+      </g>
+
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as LED lights -->
+        <g id="left_eye">
+          <circle cx="180" cy="190" r="10" fill="#37474F"/>
+          <circle cx="180" cy="190" r="6" fill="#4FC3F7"/>
+        </g>
+        <g id="right_eye">
+          <circle cx="220" cy="190" r="10" fill="#37474F"/>
+          <circle cx="220" cy="190" r="6" fill="#4FC3F7"/>
+        </g>
+        
+        <!-- Mouth as digital display -->
+        <rect id="display"
+              x="175" y="220"
+              width="50" height="15"
+              fill="#37474F"/>
+        <path id="smile"
+              d="M180 228 h10 v5 h20 v-5 h10"
+              stroke="#4FC3F7"
+              stroke-width="2"
+              fill="none"/>
+      </g>
+
+      <!-- Antenna -->
+      <g id="antenna">
+        <line x1="200" y1="160" x2="200" y2="140"
+              stroke="#263238" stroke-width="4"/>
+        <circle cx="200" cy="135" r="5"
+                fill="#4FC3F7"/>
+      </g>
+    </g>
+
+    <!-- Side thrusters -->
+    <g id="thrusters">
+      <rect x="100" y="260" width="20" height="40" 
+            fill="#455A64" stroke="#263238" stroke-width="2"/>
+      <rect x="280" y="260" width="20" height="40" 
+            fill="#455A64" stroke="#263238" stroke-width="2"/>
+      <circle cx="110" cy="310" r="5" fill="#4FC3F7"/>
+      <circle cx="290" cy="310" r="5" fill="#4FC3F7"/>
+    </g>
+  </g>
+</svg> 
