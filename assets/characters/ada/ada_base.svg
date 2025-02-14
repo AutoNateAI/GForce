@@ -2,142 +2,145 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
   <!-- Base layer for Ada (Quantum) -->
   <g id="ada_base">
-    <!-- Body - made of quantum elements -->
-    <g id="quantum_body">
-      <!-- Main body - electron cloud/wave function -->
-      <path id="body_wave" 
-            d="M200 150 
-               c60 20, 60 80, 0 140
-               c-60 -60, -60 -120, 0 -140" 
-            fill="#4169E1" 
-            stroke="#6495ED" 
-            stroke-width="3"/>
-      
-      <!-- Quantum patterns -->
-      <g id="body_patterns">
-        <!-- Electron orbits -->
-        <ellipse id="orbit1" 
-                cx="200" cy="200" rx="40" ry="20" 
-                fill="none" 
-                stroke="#6495ED" 
-                stroke-width="2"
-                stroke-dasharray="5,5"/>
-        <ellipse id="orbit2" 
-                cx="200" cy="220" rx="30" ry="15" 
-                fill="none" 
-                stroke="#6495ED" 
-                stroke-width="2"
-                stroke-dasharray="5,5"/>
-        <!-- Quantum dots -->
-        <circle id="quantum_dot1" cx="180" cy="190" r="5" fill="#6495ED"/>
-        <circle id="quantum_dot2" cx="220" cy="210" r="5" fill="#6495ED"/>
-        <circle id="quantum_dot3" cx="200" cy="230" r="5" fill="#6495ED"/>
+    <!-- Electromagnetic waves -->
+    <g id="em_waves">
+      <!-- Upper spin swirl -->
+      <g id="upper_swirl">
+        <path id="upper_red"
+              d="M200 140
+                 c-30 -20, -60 -20, -90 0
+                 c30 20, 60 20, 90 0"
+              fill="none"
+              stroke="#FF1744"
+              stroke-width="4"
+              opacity="0.8"/>
+        <path id="upper_yellow"
+              d="M200 150
+                 c-25 -15, -50 -15, -75 0
+                 c25 15, 50 15, 75 0"
+              fill="none"
+              stroke="#FFEA00"
+              stroke-width="4"
+              opacity="0.8"/>
+        <path id="upper_blue"
+              d="M200 160
+                 c-20 -10, -40 -10, -60 0
+                 c20 10, 40 10, 60 0"
+              fill="none"
+              stroke="#2979FF"
+              stroke-width="4"
+              opacity="0.8"/>
+      </g>
+
+      <!-- Lower spin swirl -->
+      <g id="lower_swirl">
+        <path id="lower_red"
+              d="M200 300
+                 c30 20, 60 20, 90 0
+                 c-30 -20, -60 -20, -90 0"
+              fill="none"
+              stroke="#FF1744"
+              stroke-width="4"
+              opacity="0.8"/>
+        <path id="lower_yellow"
+              d="M200 290
+                 c25 15, 50 15, 75 0
+                 c-25 -15, -50 -15, -75 0"
+              fill="none"
+              stroke="#FFEA00"
+              stroke-width="4"
+              opacity="0.8"/>
+        <path id="lower_blue"
+              d="M200 280
+                 c20 10, 40 10, 60 0
+                 c-20 -10, -40 -10, -60 0"
+              fill="none"
+              stroke="#2979FF"
+              stroke-width="4"
+              opacity="0.8"/>
       </g>
     </g>
 
-    <!-- Head - circle with face -->
-    <g id="head">
-      <circle id="head_shape" 
-              cx="200" cy="120" r="40" 
-              fill="#FFD3B6"/>
+    <!-- Main quantum body -->
+    <g id="main_body">
+      <!-- Glow effect -->
+      <circle id="glow"
+              cx="200" cy="220"
+              r="85"
+              fill="#311B92"
+              opacity="0.3"/>
       
-      <!-- Face -->
-      <g id="face">
-        <!-- Eyes with glasses -->
-        <g id="eyes">
-          <circle id="left_eye" cx="185" cy="115" r="8" fill="#000000"/>
-          <circle id="right_eye" cx="215" cy="115" r="8" fill="#000000"/>
-          <circle id="left_eye_highlight" cx="188" cy="112" r="3" fill="#FFFFFF"/>
-          <circle id="right_eye_highlight" cx="218" cy="112" r="3" fill="#FFFFFF"/>
-          <!-- Glasses -->
-          <circle id="left_glasses" cx="185" cy="115" r="12" 
-                  fill="none" stroke="#000000" stroke-width="2"/>
-          <circle id="right_glasses" cx="215" cy="115" r="12" 
-                  fill="none" stroke="#000000" stroke-width="2"/>
-          <line id="glasses_bridge" x1="197" y1="115" x2="203" y2="115" 
-                stroke="#000000" stroke-width="2"/>
-        </g>
+      <!-- Central spin circle -->
+      <circle id="spin_circle"
+              cx="200" cy="220"
+              r="80"
+              fill="#4527A0"
+              stroke="#311B92"
+              stroke-width="4"/>
+      
+      <!-- Spin rotation effect -->
+      <g id="spin_effect">
+        <path id="spin_path"
+              d="M140 220 
+                 A60 60 0 1 1 260 220
+                 A60 60 0 1 0 140 220"
+              fill="none"
+              stroke="#7C4DFF"
+              stroke-width="4"
+              stroke-dasharray="8,8"/>
         
-        <!-- Mouth - animatable -->
-        <path id="mouth" 
-              d="M185 130 Q200 140 215 130" 
-              fill="none" 
-              stroke="#000000" 
+        <!-- Spin direction arrows -->
+        <path id="arrow1"
+              d="M250 200 l10 10 l-10 10"
+              fill="none"
+              stroke="#B388FF"
+              stroke-width="3"/>
+        <path id="arrow2"
+              d="M150 240 l-10 -10 l10 -10"
+              fill="none"
+              stroke="#B388FF"
               stroke-width="3"/>
       </g>
-    </g>
 
-    <!-- Arms - simple lines with joints -->
-    <g id="arms">
-      <g id="left_arm">
-        <line id="left_upper_arm" 
-              x1="140" y1="185" x2="110" y2="220" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="left_lower_arm" 
-              x1="110" y1="220" x2="90" y2="260" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-      </g>
-      <g id="right_arm">
-        <line id="right_upper_arm" 
-              x1="260" y1="185" x2="290" y2="220" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="right_lower_arm" 
-              x1="290" y1="220" x2="310" y2="260" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-      </g>
-    </g>
-
-    <!-- Legs - simple lines with joints -->
-    <g id="legs">
-      <g id="left_leg">
-        <line id="left_upper_leg" 
-              x1="170" y1="290" x2="160" y2="340" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="left_lower_leg" 
-              x1="160" y1="340" x2="150" y2="390" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-      </g>
-      <g id="right_leg">
-        <line id="right_upper_leg" 
-              x1="230" y1="290" x2="240" y2="340" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="right_lower_leg" 
-              x1="240" y1="340" x2="250" y2="390" 
-              stroke="#FFD3B6" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as quantum states -->
+        <g id="left_eye">
+          <circle id="left_outer" 
+                  cx="170" cy="200" 
+                  r="15" 
+                  fill="#7C4DFF"/>
+          <circle id="left_inner" 
+                  cx="170" cy="200" 
+                  r="8" 
+                  fill="#B388FF"/>
+        </g>
+        <g id="right_eye">
+          <circle id="right_outer" 
+                  cx="230" cy="200" 
+                  r="15" 
+                  fill="#7C4DFF"/>
+          <circle id="right_inner" 
+                  cx="230" cy="200" 
+                  r="8" 
+                  fill="#B388FF"/>
+        </g>
+        <!-- Mouth as wave function -->
+        <path id="mouth" 
+              d="M170 240 q30 20 60 0" 
+              stroke="#B388FF" 
+              stroke-width="4"
+              fill="none"/>
       </g>
     </g>
 
-    <!-- Floating quantum elements -->
-    <g id="floating_elements">
-      <!-- Quantum circuit symbols -->
-      <g id="quantum_gates">
-        <rect id="gate1" x="150" y="80" width="20" height="20" 
-              fill="none" stroke="#FFD700" stroke-width="2"/>
-        <circle id="gate2" cx="190" cy="70" r="10" 
-                fill="none" stroke="#FFD700" stroke-width="2"/>
-        <path id="gate3" d="M220 60 h20 v20 h-20 z M220 70 h20" 
-              fill="none" stroke="#FFD700" stroke-width="2"/>
-      </g>
-      <!-- Wave function symbols -->
-      <path id="wave_function" 
-            d="M140 100 c10 -10, 20 10, 30 0 c10 -10, 20 10, 30 0" 
-            fill="none" stroke="#FFD700" stroke-width="2"/>
+    <!-- Energy state indicators -->
+    <g id="energy_indicators">
+      <!-- High energy particles -->
+      <circle id="particle1" cx="160" cy="160" r="4" fill="#2979FF"/>
+      <circle id="particle2" cx="240" cy="160" r="4" fill="#FFEA00"/>
+      <circle id="particle3" cx="160" cy="280" r="4" fill="#FF1744"/>
+      <circle id="particle4" cx="240" cy="280" r="4" fill="#2979FF"/>
     </g>
   </g>
 </svg> 

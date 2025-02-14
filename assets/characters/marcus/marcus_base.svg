@@ -2,146 +2,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
   <!-- Base layer for Marcus (Chemistry) -->
   <g id="marcus_base">
-    <!-- Head - circle with face -->
-    <g id="head">
-      <circle id="head_shape" 
-              cx="200" cy="120" r="40" 
-              fill="#E6B89C"/>
+    <!-- Main atom body -->
+    <g id="main_body">
+      <!-- Outer electron shell (tilted circle) -->
+      <ellipse id="outer_shell"
+               cx="200" cy="220"
+               rx="100" ry="30"
+               fill="none"
+               stroke="#7B1FA2"
+               stroke-width="3"/>
       
-      <!-- Face -->
-      <g id="face">
-        <!-- Eyes -->
-        <g id="eyes">
-          <circle id="left_eye" cx="185" cy="115" r="8" fill="#000000"/>
-          <circle id="right_eye" cx="215" cy="115" r="8" fill="#000000"/>
-          <circle id="left_eye_highlight" cx="188" cy="112" r="3" fill="#FFFFFF"/>
-          <circle id="right_eye_highlight" cx="218" cy="112" r="3" fill="#FFFFFF"/>
-        </g>
-        
-        <!-- Mouth - animatable -->
-        <path id="mouth" 
-              d="M185 130 Q200 140 215 130" 
-              fill="none" 
-              stroke="#000000" 
+      <!-- Middle electron shell -->
+      <ellipse id="middle_shell"
+               cx="200" cy="220"
+               rx="70" ry="20"
+               fill="none"
+               stroke="#1976D2"
+               stroke-width="3"
+               transform="rotate(-60 200 220)"/>
+      
+      <!-- Inner electron shell -->
+      <ellipse id="inner_shell"
+               cx="200" cy="220"
+               rx="70" ry="20"
+               fill="none"
+               stroke="#7B1FA2"
+               stroke-width="3"
+               transform="rotate(60 200 220)"/>
+
+      <!-- Nucleus (core) -->
+      <circle id="nucleus"
+              cx="200" cy="220"
+              r="40"
+              fill="#4CAF50"
+              stroke="#2E7D32"
               stroke-width="3"/>
-      </g>
-    </g>
-
-    <!-- Body - Erlenmeyer flask shape -->
-    <g id="chemistry_body">
-      <!-- Main flask body -->
-      <path id="flask" 
-            d="M180 170
-               h40
-               l30 140
-               h-100
-               l30 -140" 
-            fill="#2E8B57"/>
       
-      <!-- Liquid layers -->
-      <g id="liquid_layers">
-        <path id="layer1" 
-              d="M165 250 
-                 l70 0 
-                 l5 20 
-                 h-80 
-                 l5 -20" 
-              fill="#3CB371"/>
-        <path id="layer2" 
-              d="M155 290 
-                 l90 0 
-                 l5 20 
-                 h-100 
-                 l5 -20" 
-              fill="#98FB98"/>
-      </g>
-
-      <!-- Bubbles -->
-      <g id="bubbles">
-        <circle id="bubble1" cx="180" cy="260" r="5" fill="#98FB98"/>
-        <circle id="bubble2" cx="200" cy="270" r="4" fill="#98FB98"/>
-        <circle id="bubble3" cx="220" cy="265" r="6" fill="#98FB98"/>
-      </g>
-
-      <!-- Flask rim -->
-      <path id="flask_rim"
-            d="M180 170 h40"
-            stroke="#3CB371"
-            stroke-width="4"/>
-    </g>
-
-    <!-- Arms - simple lines with joints -->
-    <g id="arms">
-      <g id="left_arm">
-        <line id="left_upper_arm" 
-              x1="160" y1="185" x2="130" y2="220" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="left_lower_arm" 
-              x1="130" y1="220" x2="110" y2="260" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-      </g>
-      <g id="right_arm">
-        <line id="right_upper_arm" 
-              x1="240" y1="185" x2="270" y2="220" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="right_lower_arm" 
-              x1="270" y1="220" x2="290" y2="260" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as electrons -->
+        <g id="left_eye">
+          <circle id="left_electron_orbit" 
+                  cx="180" cy="210" 
+                  r="12" 
+                  fill="#1976D2"/>
+          <circle id="left_electron_core" 
+                  cx="180" cy="210" 
+                  r="6" 
+                  fill="#BBDEFB"/>
+        </g>
+        <g id="right_eye">
+          <circle id="right_electron_orbit" 
+                  cx="220" cy="210" 
+                  r="12" 
+                  fill="#1976D2"/>
+          <circle id="right_electron_core" 
+                  cx="220" cy="210" 
+                  r="6" 
+                  fill="#BBDEFB"/>
+        </g>
+        <!-- Mouth as energy level -->
+        <path id="mouth" 
+              d="M180 240 q20 10 40 0" 
+              stroke="#7B1FA2" 
+              stroke-width="4"
+              fill="none"/>
       </g>
     </g>
 
-    <!-- Legs - simple lines with joints -->
-    <g id="legs">
-      <g id="left_leg">
-        <line id="left_upper_leg" 
-              x1="180" y1="310" x2="170" y2="360" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="left_lower_leg" 
-              x1="170" y1="360" x2="160" y2="410" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-      </g>
-      <g id="right_leg">
-        <line id="right_upper_leg" 
-              x1="220" y1="310" x2="230" y2="360" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-        <line id="right_lower_leg" 
-              x1="230" y1="360" x2="240" y2="410" 
-              stroke="#E6B89C" 
-              stroke-width="8" 
-              stroke-linecap="round"/>
-      </g>
-    </g>
-
-    <!-- Floating elements -->
-    <g id="floating_elements">
-      <!-- Chemical formulas -->
-      <text id="formula1" x="150" y="80" 
-            font-family="monospace" font-size="16" 
-            fill="#FFD700">H₂O</text>
-      <text id="formula2" x="230" y="80" 
-            font-family="monospace" font-size="16" 
-            fill="#FFD700">CO₂</text>
-      
-      <!-- Safety goggles -->
-      <path id="goggles" 
-            d="M160 100 h80" 
-            fill="none" 
-            stroke="#FFD700" 
-            stroke-width="5"/>
+    <!-- Electrons orbiting -->
+    <g id="orbiting_electrons">
+      <circle cx="160" cy="220" r="6" fill="#1976D2"/>
+      <circle cx="240" cy="220" r="6" fill="#1976D2"/>
+      <circle cx="200" cy="190" r="6" fill="#1976D2"/>
+      <circle cx="200" cy="250" r="6" fill="#1976D2"/>
     </g>
   </g>
 </svg> 
