@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Nova (Astronomy) -->
+  <g id="nova_base">
+    <!-- Star burst rays -->
+    <g id="star_rays">
+      <path id="ray1" d="M200 140 l0 -40" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray2" d="M240 160 l30 -30" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray3" d="M260 220 l40 0" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray4" d="M240 280 l30 30" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray5" d="M200 300 l0 40" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray6" d="M160 280 l-30 30" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray7" d="M140 220 l-40 0" stroke="#FF9E80" stroke-width="4"/>
+      <path id="ray8" d="M160 160 l-30 -30" stroke="#FF9E80" stroke-width="4"/>
+    </g>
+
+    <!-- Main star body -->
+    <g id="main_body">
+      <!-- Outer glow -->
+      <circle id="glow"
+              cx="200" cy="220"
+              r="85"
+              fill="#FF6D00"
+              opacity="0.3"/>
+      
+      <!-- Star core -->
+      <circle id="star_core"
+              cx="200" cy="220"
+              r="80"
+              fill="#FF9100"
+              stroke="#FF6D00"
+              stroke-width="4"/>
+
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as smaller stars -->
+        <g id="left_eye">
+          <circle id="left_outer" 
+                  cx="170" cy="200" 
+                  r="15" 
+                  fill="#FFC400"/>
+          <circle id="left_inner" 
+                  cx="170" cy="200" 
+                  r="8" 
+                  fill="#FFECB3"/>
+        </g>
+        <g id="right_eye">
+          <circle id="right_outer" 
+                  cx="230" cy="200" 
+                  r="15" 
+                  fill="#FFC400"/>
+          <circle id="right_inner" 
+                  cx="230" cy="200" 
+                  r="8" 
+                  fill="#FFECB3"/>
+        </g>
+        <!-- Mouth as solar flare -->
+        <path id="mouth" 
+              d="M170 240 q30 20 60 0" 
+              stroke="#FFECB3" 
+              stroke-width="4"
+              fill="none"/>
+      </g>
+    </g>
+
+    <!-- Orbiting elements -->
+    <g id="orbiting_elements">
+      <circle id="planet1" cx="160" cy="160" r="6" fill="#FFECB3"/>
+      <circle id="planet2" cx="240" cy="160" r="4" fill="#FFECB3"/>
+      <circle id="planet3" cx="160" cy="280" r="5" fill="#FFECB3"/>
+      <circle id="planet4" cx="240" cy="280" r="4" fill="#FFECB3"/>
+    </g>
+  </g>
+</svg> 

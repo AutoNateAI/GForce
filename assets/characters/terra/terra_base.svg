@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Terra (Geology) -->
+  <g id="terra_base">
+    <!-- Atmosphere glow -->
+    <circle id="atmosphere"
+            cx="200" cy="220"
+            r="85"
+            fill="#29B6F6"
+            opacity="0.2"/>
+    
+    <!-- Main planet body -->
+    <g id="main_body">
+      <!-- Ocean base -->
+      <circle id="ocean_layer"
+              cx="200" cy="220"
+              r="80"
+              fill="#0277BD"
+              stroke="#01579B"
+              stroke-width="4"/>
+      
+      <!-- Plate boundaries -->
+      <g id="plate_boundaries">
+        <path id="boundary1"
+              d="M140 200 q60 -10 120 10"
+              fill="none"
+              stroke="#1B5E20"
+              stroke-width="1"
+              stroke-dasharray="4,4"
+              opacity="0.5"/>
+        <path id="boundary2"
+              d="M140 240 q60 10 120 -10"
+              fill="none"
+              stroke="#1B5E20"
+              stroke-width="1"
+              stroke-dasharray="4,4"
+              opacity="0.5"/>
+      </g>
+
+      <!-- Pangaea-like continent -->
+      <path id="continent" 
+            d="M160 180 
+               q20 -20 40 -10
+               q20 10 40 -10
+               q20 30 0 80
+               q-20 20 -40 10
+               q-20 -10 -40 10
+               q-20 -30 0 -80"
+            fill="#2E7D32"/>
+
+      <!-- Simple tectonic line -->
+      <path id="tectonic_line"
+            d="M140 220 
+               q60 -20 120 0"
+            fill="none"
+            stroke="#795548"
+            stroke-width="2"
+            stroke-dasharray="6,3"/>
+
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as volcanic craters -->
+        <g id="left_eye">
+          <circle id="left_crater_outer" 
+                  cx="170" cy="200" 
+                  r="16" 
+                  fill="#4E342E"/>
+          <circle id="left_crater" 
+                  cx="170" cy="200" 
+                  r="12" 
+                  fill="#5D4037"/>
+          <circle id="left_lava" 
+                  cx="170" cy="200" 
+                  r="8" 
+                  fill="#FF5722"/>
+        </g>
+        <g id="right_eye">
+          <circle id="right_crater_outer" 
+                  cx="230" cy="200" 
+                  r="16" 
+                  fill="#4E342E"/>
+          <circle id="right_crater" 
+                  cx="230" cy="200" 
+                  r="12" 
+                  fill="#5D4037"/>
+          <circle id="right_lava" 
+                  cx="230" cy="200" 
+                  r="8" 
+                  fill="#FF5722"/>
+        </g>
+        <!-- Mouth as fault line -->
+        <path id="mouth" 
+              d="M170 240 q30 20 60 0" 
+              stroke="#795548" 
+              stroke-width="4"
+              fill="none"
+              stroke-dasharray="8,4"/>
+      </g>
+    </g>
+
+    <!-- Ring system -->
+    <g id="rings">
+      <ellipse id="outer_ring"
+               cx="200" cy="220"
+               rx="100" ry="20"
+               fill="none"
+               stroke="#B3E5FC"
+               stroke-width="2"
+               opacity="0.5"/>
+      <ellipse id="middle_ring"
+               cx="200" cy="220"
+               rx="95" ry="17"
+               fill="none"
+               stroke="#B3E5FC"
+               stroke-width="1.5"
+               opacity="0.4"/>
+      <ellipse id="inner_ring"
+               cx="200" cy="220"
+               rx="90" ry="15"
+               fill="none"
+               stroke="#B3E5FC"
+               stroke-width="1"
+               opacity="0.3"/>
+    </g>
+  </g>
+</svg> 
