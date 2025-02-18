@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Bio (Biology) -->
+  <g id="bio_base">
+    <!-- Main DNA body -->
+    <g id="main_body">
+      <!-- Base pairs -->
+      <g id="base_pairs">
+        <line x1="160" y1="180" x2="240" y2="180" stroke="#4CAF50" stroke-width="6"/>
+        <line x1="160" y1="220" x2="240" y2="220" stroke="#4CAF50" stroke-width="6"/>
+        <line x1="160" y1="260" x2="240" y2="260" stroke="#4CAF50" stroke-width="6"/>
+      </g>
+
+      <!-- DNA strands -->
+      <path id="left_strand"
+            d="M160 120
+               c40 0, 40 20, 40 20
+               c-40 20, -40 60, 0 80
+               c40 20, 40 60, 0 80
+               c-40 0, -40 20, -40 20"
+            fill="none"
+            stroke="#5E35B1"
+            stroke-width="12"
+            stroke-linecap="round"/>
+      
+      <path id="right_strand"
+            d="M240 120
+               c-40 0, -40 20, -40 20
+               c40 20, 40 60, 0 80
+               c-40 20, -40 60, 0 80
+               c40 0, 40 20, 40 20"
+            fill="none"
+            stroke="#3949AB"
+            stroke-width="12"
+            stroke-linecap="round"/>
+
+      <!-- Base letters -->
+      <g id="base_letters" font-family="Arial" font-weight="bold" fill="#4CAF50">
+        <text x="145" y="185" font-size="16">C</text>
+        <text x="250" y="185" font-size="16">G</text>
+        <text x="145" y="225" font-size="16">T</text>
+        <text x="250" y="225" font-size="16">A</text>
+        <text x="145" y="265" font-size="16">G</text>
+        <text x="250" y="265" font-size="16">C</text>
+      </g>
+
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes -->
+        <circle id="left_eye" 
+                cx="180" cy="160" 
+                r="8" 
+                fill="#4CAF50"/>
+        <circle id="right_eye" 
+                cx="220" cy="160" 
+                r="8" 
+                fill="#4CAF50"/>
+      </g>
+    </g>
+  </g>
+</svg> 

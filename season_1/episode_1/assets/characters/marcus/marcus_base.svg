@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Marcus (Chemistry) -->
+  <g id="marcus_base">
+    <!-- Main atom body -->
+    <g id="main_body">
+      <!-- Outer electron shell (tilted circle) -->
+      <ellipse id="outer_shell"
+               cx="200" cy="220"
+               rx="100" ry="30"
+               fill="none"
+               stroke="#7B1FA2"
+               stroke-width="3"/>
+      
+      <!-- Middle electron shell -->
+      <ellipse id="middle_shell"
+               cx="200" cy="220"
+               rx="70" ry="20"
+               fill="none"
+               stroke="#1976D2"
+               stroke-width="3"
+               transform="rotate(-60 200 220)"/>
+      
+      <!-- Inner electron shell -->
+      <ellipse id="inner_shell"
+               cx="200" cy="220"
+               rx="70" ry="20"
+               fill="none"
+               stroke="#7B1FA2"
+               stroke-width="3"
+               transform="rotate(60 200 220)"/>
+
+      <!-- Nucleus (core) -->
+      <circle id="nucleus"
+              cx="200" cy="220"
+              r="40"
+              fill="#4CAF50"
+              stroke="#2E7D32"
+              stroke-width="3"/>
+      
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as electrons -->
+        <g id="left_eye">
+          <circle id="left_electron_orbit" 
+                  cx="180" cy="210" 
+                  r="12" 
+                  fill="#1976D2"/>
+          <circle id="left_electron_core" 
+                  cx="180" cy="210" 
+                  r="6" 
+                  fill="#BBDEFB"/>
+        </g>
+        <g id="right_eye">
+          <circle id="right_electron_orbit" 
+                  cx="220" cy="210" 
+                  r="12" 
+                  fill="#1976D2"/>
+          <circle id="right_electron_core" 
+                  cx="220" cy="210" 
+                  r="6" 
+                  fill="#BBDEFB"/>
+        </g>
+        <!-- Mouth as energy level -->
+        <path id="mouth" 
+              d="M180 240 q20 10 40 0" 
+              stroke="#7B1FA2" 
+              stroke-width="4"
+              fill="none"/>
+      </g>
+    </g>
+
+    <!-- Electrons orbiting -->
+    <g id="orbiting_electrons">
+      <circle cx="160" cy="220" r="6" fill="#1976D2"/>
+      <circle cx="240" cy="220" r="6" fill="#1976D2"/>
+      <circle cx="200" cy="190" r="6" fill="#1976D2"/>
+      <circle cx="200" cy="250" r="6" fill="#1976D2"/>
+    </g>
+  </g>
+</svg> 

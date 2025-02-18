@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Dr. Sage -->
+  <g id="sage_base">
+    <!-- Head - circuit board style -->
+    <g id="head">
+      <circle id="head_shape" 
+              cx="200" cy="120" r="40" 
+              fill="#4A4A4A"/>
+      
+      <!-- Circuit patterns -->
+      <g id="circuit_patterns">
+        <path id="circuit1" 
+              d="M170 100 h20 v10 h30" 
+              fill="none" 
+              stroke="#00FF00" 
+              stroke-width="2"/>
+        <path id="circuit2" 
+              d="M180 140 h40 v-10" 
+              fill="none" 
+              stroke="#00FF00" 
+              stroke-width="2"/>
+        <!-- Circuit nodes -->
+        <circle id="node1" cx="190" cy="100" r="3" fill="#00FF00"/>
+        <circle id="node2" cx="220" cy="130" r="3" fill="#00FF00"/>
+      </g>
+      
+      <!-- Face -->
+      <g id="face">
+        <!-- Digital eyes -->
+        <g id="eyes">
+          <rect id="left_eye" x="175" y="110" width="15" height="10" fill="#00FF00"/>
+          <rect id="right_eye" x="210" y="110" width="15" height="10" fill="#00FF00"/>
+        </g>
+        
+        <!-- Mouth - digital style -->
+        <path id="mouth" 
+              d="M185 130 h30" 
+              stroke="#00FF00" 
+              stroke-width="2"/>
+      </g>
+    </g>
+
+    <!-- Body - holographic display -->
+    <g id="tech_body">
+      <!-- Main display panel -->
+      <path id="display_panel" 
+            d="M160 170
+               h80
+               v120
+               h-80
+               z" 
+            fill="#1A1A1A"
+            stroke="#00FF00"
+            stroke-width="2"/>
+      
+      <!-- Data streams -->
+      <g id="data_streams">
+        <path id="stream1" 
+              d="M170 190 h60" 
+              stroke="#00FF00" 
+              stroke-width="2"
+              stroke-dasharray="5,5"/>
+        <path id="stream2" 
+              d="M170 220 h60" 
+              stroke="#00FF00" 
+              stroke-width="2"
+              stroke-dasharray="5,5"/>
+        <path id="stream3" 
+              d="M170 250 h60" 
+              stroke="#00FF00" 
+              stroke-width="2"
+              stroke-dasharray="5,5"/>
+      </g>
+
+      <!-- Binary code -->
+      <text id="binary1" x="175" y="210" 
+            font-family="monospace" font-size="10" 
+            fill="#00FF00">10011101</text>
+      <text id="binary2" x="175" y="240" 
+            font-family="monospace" font-size="10" 
+            fill="#00FF00">01101001</text>
+    </g>
+
+    <!-- Arms - energy beams -->
+    <g id="arms">
+      <g id="left_arm">
+        <path id="left_arm_beam" 
+              d="M160 185 
+                 q-30 40, -50 80" 
+              stroke="#00FF00" 
+              stroke-width="4"
+              stroke-dasharray="10,5"/>
+      </g>
+      <g id="right_arm">
+        <path id="right_arm_beam" 
+              d="M240 185 
+                 q30 40, 50 80" 
+              stroke="#00FF00" 
+              stroke-width="4"
+              stroke-dasharray="10,5"/>
+      </g>
+    </g>
+
+    <!-- Base - hovering effect -->
+    <g id="hover_base">
+      <ellipse id="hover_shadow"
+               cx="200" cy="350" rx="60" ry="20"
+               fill="#00FF00"
+               opacity="0.3"/>
+      <path id="energy_field"
+            d="M140 290 
+               q60 120, 120 0"
+            fill="none"
+            stroke="#00FF00"
+            stroke-width="2"
+            stroke-dasharray="5,5"/>
+    </g>
+
+    <!-- Floating elements -->
+    <g id="floating_elements">
+      <!-- Holographic displays -->
+      <g id="holograms">
+        <rect id="holo1" x="140" y="80" width="30" height="20" 
+              fill="none" stroke="#00FF00" stroke-width="1"/>
+        <rect id="holo2" x="230" y="80" width="30" height="20" 
+              fill="none" stroke="#00FF00" stroke-width="1"/>
+      </g>
+      
+      <!-- Energy particles -->
+      <g id="particles">
+        <circle id="particle1" cx="150" cy="90" r="2" fill="#00FF00"/>
+        <circle id="particle2" cx="240" cy="90" r="2" fill="#00FF00"/>
+        <circle id="particle3" cx="200" cy="70" r="2" fill="#00FF00"/>
+      </g>
+    </g>
+  </g>
+</svg> 

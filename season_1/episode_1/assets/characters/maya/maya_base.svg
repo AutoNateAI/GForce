@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <!-- Base layer for Maya (Vector) -->
+  <g id="maya_base">
+    <!-- Integral "magic carpet" base -->
+    <g id="integral_base">
+      <!-- Main curve -->
+      <path id="integral_curve" 
+            d="M80 320
+               c40 -20, 80 20, 120 0
+               c40 -20, 80 20, 120 0" 
+            fill="none"
+            stroke="#FFD700" 
+            stroke-width="6"/>
+      
+      <!-- Area under curve suggestion -->
+      <path id="area_fill"
+            d="M80 320
+               c40 -20, 80 20, 120 0
+               c40 -20, 80 20, 120 0
+               V 340
+               H 80 Z"
+            fill="#FFD700"
+            opacity="0.3"/>
+      
+      <!-- Integral symbol -->
+      <text id="integral_symbol"
+            x="60" y="330"
+            font-family="monospace"
+            font-size="30"
+            fill="#FFD700">∫</text>
+    </g>
+
+    <!-- Main parabola body -->
+    <g id="main_body">
+      <!-- Background shape -->
+      <path id="parabola_body"
+            d="M200 180 
+               q-60 90 -60 140
+               h120
+               q0 -50 -60 -140"
+            fill="#9932CC"
+            stroke="#FFD700"
+            stroke-width="3"/>
+      
+      <!-- Face elements -->
+      <g id="face">
+        <!-- Eyes as plot points -->
+        <g id="left_eye_group">
+          <circle id="left_eye_outer" cx="170" cy="240" r="12" fill="#FFD700"/>
+          <circle id="left_eye_inner" cx="170" cy="240" r="6" fill="#9932CC"/>
+        </g>
+        <g id="right_eye_group">
+          <circle id="right_eye_outer" cx="230" cy="240" r="12" fill="#FFD700"/>
+          <circle id="right_eye_inner" cx="230" cy="240" r="6" fill="#9932CC"/>
+        </g>
+        <!-- Mouth as curve segment -->
+        <path id="mouth" 
+              d="M170 270 q30 15 60 0" 
+              stroke="#FFD700" 
+              stroke-width="4"
+              fill="none"/>
+      </g>
+    </g>
+
+    <!-- Vertex point -->
+    <g id="vertex">
+      <circle id="vertex_outer" 
+              cx="200" cy="180" r="15" 
+              fill="#FFD700"/>
+      <circle id="vertex_inner" 
+              cx="200" cy="180" r="8" 
+              fill="#9932CC"/>
+    </g>
+  </g>
+</svg> 
