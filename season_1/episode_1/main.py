@@ -3,11 +3,19 @@ from manim_voiceover import VoiceoverScene
 from manim_voiceover.services.openai import OpenAIService
 from dotenv import load_dotenv
 import os, random, openai
+import numpy as np
+import sys
+
+# Add the project root to the Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+from assets.characters.nova.nova_character import Nova
+from assets.characters.maya.maya_character import Maya
 
 load_dotenv()
 
 # Base VoiceoverScene that other scenes will inherit from
-class BaseScene(VoiceoverScene):
+class BaseScene(MovingCameraScene, VoiceoverScene):
     def setup(self):
         super().setup()
         # Use environment variable for API key
@@ -100,23 +108,33 @@ class OpeningHook(BaseScene):
         school = HighSchool()
         school.set_width(config.frame_width * 0.8)
         school.to_edge(DOWN)
+
+        # Create lab background - scaled to fit zoomed view
+        lab = SVGMobject("assets/backgrounds/science_lab.svg")
+        lab.set_width(config.frame_width * 0.4)  # Scale relative to frame width
+        lab.move_to(school.door)  # Position at the door
+        lab.set_opacity(0)  # Start invisible
         
-        # Create student placeholders until we have proper SVGs
-        students = VGroup(
-            # Ada placeholder (purple circle)
-            Circle(radius=0.4, color=Colors.ADA_PURPLE, fill_opacity=0.8),
-            # Marcus placeholder (green hexagon)
-            RegularPolygon(n=6, color=Colors.MARCUS_GREEN, fill_opacity=0.8),
-            # Maya placeholder (gold triangle)
-            Triangle(color=Colors.MAYA_GOLD, fill_opacity=0.8)
-        ).arrange(RIGHT, buff=1)
-        students.scale(0.8)
-        students.next_to(school, UP)
+        # Create character symbols using SVGs - load as is
+        maya = SVGMobject("assets/characters/maya/maya_base.svg")
+        nova = Nova()  # Update Nova reference
+        marcus = SVGMobject("assets/characters/marcus/marcus_base.svg")
+        
+        # Scale characters to match title sequence
+        for char in [maya, nova, marcus]:
+            char.scale(0.8)  # Same scale as title sequence
+        
+        # Position them in the lab
+        chars = VGroup(maya, nova, marcus)
+        chars.arrange(RIGHT, buff=1)  # Same spacing as title sequence
+        chars.scale(0.3)  # Scale the group down to fit zoomed view
+        chars.move_to(school.door)
+        chars.shift(DOWN * 0.1)
+        chars.set_opacity(0)  # Only control opacity
         
         with self.voiceover(text="""
-            Sometimes the biggest discoveries happen by accident...
-            And for three ordinary high school students, 
-            one late night study session was about to change everything.
+            Three ordinary high school students...
+            About to make an extraordinary discovery.
         """):
             # Show the setting
             self.play(
@@ -124,198 +142,187 @@ class OpeningHook(BaseScene):
                 FadeIn(school)
             )
             
-            # Animate windows changing colors
-            window_colors = [
-                Colors.ADA_PURPLE,
-                Colors.MARCUS_GREEN,
-                Colors.MAYA_GOLD,
-                Colors.NOVA_BLUE
-            ]
-            
-            # Create window color animation
+            # Animate windows with Nova blue
             self.play(
-                *[
-                    window.animate.set_fill(
-                        random.choice(window_colors),
-                        opacity=random.uniform(0.3, 0.6)
-                    )
-                    for window in school.windows
-                ],
-                run_time=1
-            )
-            
-            # Create and animate strange lights with more intensity
-            lights = VGroup(*[
-                Circle(
-                    radius=random.uniform(0.1, 0.3),
-                    fill_color=Colors.NOVA_BLUE,
-                    fill_opacity=random.uniform(0.4, 0.8),
-                    stroke_width=0
-                ).move_to([
-                    random.uniform(-config.frame_width/3, config.frame_width/3),
-                    random.uniform(1, config.frame_height/2),
-                    0
-                ])
-                for _ in range(15)  # More lights
-            ])
-            
-            # Animate the lights while windows continue to change
-            self.play(
-                LaggedStart(*[
-                    FadeIn(light, scale=random.uniform(1.2, 1.5))
-                    for light in lights
-                ], lag_ratio=0.2),
-                *[
-                    light.animate.shift(UP * random.uniform(0.5, 1.0))
-                    for light in lights
-                ],
-                *[
-                    window.animate.set_fill(
-                        random.choice(window_colors),
-                        opacity=random.uniform(0.3, 0.6)
-                    )
-                    for window in school.windows
-                ],
-                run_time=2
-            )
-
-        # New voiceover for dramatic buildup
-        with self.voiceover(text="""
-            As the strange lights filled the sky, 
-            they had no idea they were about to become...
-        """):
-            # Show the students reacting with enhanced effects
-            self.play(
-                FadeIn(students),
-                *[
-                    Flash(
-                        light,
-                        color=Colors.NOVA_BLUE,
-                        line_length=0.3,
-                        flash_radius=0.6
-                    )
-                    for light in lights  # Flash all lights
-                ],
                 *[
                     window.animate.set_fill(
                         Colors.NOVA_BLUE,
-                        opacity=0.8  # Brighter windows
+                        opacity=random.uniform(0.3, 0.6)
                     )
                     for window in school.windows
                 ],
+                run_time=1
+            )
+
+            # Zoom in to door and expand to fill viewport
+            self.play(
+                self.camera.frame.animate.scale(0.4).move_to(school.door),
+                run_time=1
+            )
+            
+            # Transition to lab and reveal characters together
+            self.play(
+                lab.animate.scale(2.5).set_opacity(1),  # Scale up to fill view
+                self.camera.frame.animate.scale(0.8),    # Zoom in more
+                chars.animate.set_opacity(1),            # Show characters
+                run_time=1.5
+            )
+
+            # Add mysterious glow from something they're studying
+            glow = Circle(
+                radius=0.3,
+                fill_color=Colors.NOVA_BLUE,
+                fill_opacity=0.3,
+                stroke_width=0
+            ).next_to(chars, UP, buff=0.1)
+
+            self.play(
+                FadeIn(glow),
+                glow.animate.scale(3).set_opacity(0.1),
+                rate_func=there_and_back,
                 run_time=2
-            )
-
-            # Add power auras around students
-            auras = VGroup(*[
-                Circle(
-                    radius=0.6,
-                    stroke_color=student.get_color(),
-                    stroke_opacity=0.6,
-                    fill_color=student.get_color(),
-                    fill_opacity=0.2
-                ).move_to(student)
-                for student in students
-            ])
-
-            self.play(
-                *[
-                    Create(aura)
-                    for aura in auras
-                ],
-                *[
-                    student.animate.scale(1.2)
-                    for student in students
-                ],
-                run_time=1
-            )
-
-            # Final flash before title
-            self.play(
-                *[
-                    Flash(
-                        aura,
-                        color=aura.get_stroke_color(),
-                        line_length=0.5,
-                        flash_radius=1.0
-                    )
-                    for aura in auras
-                ],
-                run_time=1
             )
 
 class TitleSequence(BaseScene):
     def construct(self):
         # Create main title
         title = Text("GENIUS FORCE", color=Colors.TEXT_LIGHT)
-        subtitle = Text("The Quantum Leap", 
-                       color=Colors.NOVA_BLUE,
-                       font_size=36)
+        title_group = title.to_edge(UP)
         
-        title_group = VGroup(title, subtitle).arrange(DOWN, buff=0.5)
+        # Create character symbols using SVGs - load as is
+        maya = SVGMobject("assets/characters/maya/maya_base.svg")
+        nova = Nova()  # Update Nova reference
+        marcus = SVGMobject("assets/characters/marcus/marcus_base.svg")
         
-        # Create character symbols using SVGs
-        characters = VGroup(
-            SVGMobject("assets/characters/maya/maya_base.svg"),    # Maya
-            SVGMobject("assets/characters/nova/nova_base.svg"),    # Nova in center
-            SVGMobject("assets/characters/marcus/marcus_base.svg") # Marcus
-        ).arrange(RIGHT, buff=1)
+        # Scale characters
+        for char in [maya, nova, marcus]:
+            char.scale(0.8)
         
-        # Scale and position characters
-        characters.scale(0.4)  # Adjust scale to fit nicely
-        characters.next_to(title_group, DOWN, buff=1)
-        
-        # Set character colors
-        characters[0].set_color(Colors.MAYA_GOLD)      # Maya
-        characters[1].set_color(Colors.NOVA_BLUE)      # Nova
-        characters[2].set_color(Colors.MARCUS_GREEN)   # Marcus
+        # Position maya off screen for entrance
+        maya.move_to(LEFT * 8)  # Start off screen left
+
+        # Create maya's sweeping path
+        maya_path = VMobject()
+        maya_path.set_points_smoothly([
+            LEFT * 8,                    # Start off screen left
+            LEFT * 4 + DOWN * 2,        # Come in from left
+            LEFT * 2 + UP * 3,          # Up to top left
+            RIGHT * 2 + UP * 3,         # Across the top
+            RIGHT * 4 + DOWN * 2,       # Down on right side
+            LEFT * 3                     # Final position
+        ])
 
         with self.voiceover(text="""
-            GENIUS FORCE!
-            Where science meets the extraordinary.
+            Their powers awakened...
+            A force of science unlike anything before!
         """):
-            # Dramatic title reveal
+            # Write title
+            self.play(Write(title, run_time=1.5))
+            
+            # Maya swoops around the viewport
             self.play(
-                Write(title, run_time=1.5),
-                *[
-                    FadeIn(char, scale=1.5)
-                    for char in characters
-                ]
+                MoveAlongPath(maya, maya_path),
+                rate_func=rate_functions.ease_out_sine,
+                run_time=2.5
             )
             
-            # Add subtitle with power effect
+            # Nova's electric entrance
+            sparks = VGroup(*[
+                Line(
+                    ORIGIN, 
+                    RIGHT * 0.3 * np.random.random(),
+                    stroke_color=Colors.NOVA_BLUE
+                ).rotate(angle)
+                for angle in np.linspace(0, TAU, 8)
+            ])
+            sparks.move_to(ORIGIN)
+            
+            nova.move_to(ORIGIN)  # Nova appears in center
+            marcus.move_to(RIGHT * 3)  # Moved further right for spacing
+            
             self.play(
-                Write(subtitle),
-                *[
-                    Flash(
-                        char,
-                        color=char.get_color(),
-                        line_length=0.3,
-                        flash_radius=0.6
+                LaggedStart(*[
+                    Succession(
+                        Create(spark),
+                        Uncreate(spark)
                     )
-                    for char in characters
-                ],
+                    for spark in sparks
+                ], lag_ratio=0.1),
                 run_time=1
+            )
+            self.play(
+                FadeIn(nova, scale=1.5),
+                FadeIn(marcus)  # Add Marcus's entrance
             )
             
             # Final power surge
             self.play(
                 *[
                     char.animate.scale(1.2)
-                    for char in characters
+                    for char in [maya, nova, marcus]
                 ],
-                title_group.animate.set_color(Colors.NOVA_BLUE),
+                title.animate.set_color(Colors.NOVA_BLUE),
                 run_time=0.5
             )
             
             # Add a small pulse animation to Nova
             self.play(
-                characters[1].animate.scale(1.1),
+                nova.animate.scale(1.1),
                 rate_func=there_and_back,
                 run_time=0.5
             )
             
             self.wait(0.5)
+
+class MayaIntroduction(BaseScene):
+    def construct(self):
+        # Create Maya with a good size for the scene
+        maya = Maya(scale_factor=1.5)
+        
+        # Start Maya off-screen to the left
+        maya.move_to(LEFT * 8 + UP * 2)
+        self.add(maya)
+        
+        # Create the swooping path
+        path = VMobject()
+        path.set_points_smoothly([
+            LEFT * 8 + UP * 2,      # Start from left
+            LEFT * 4 + UP * 3,      # Move up
+            RIGHT * 4 + UP * 3,     # Go across the top
+            RIGHT * 4 + DOWN * 2,   # Down the right side
+            LEFT * 4 + DOWN * 2,    # Across the bottom
+            ORIGIN                   # End in center
+        ])
+        
+        # Create the swooping animation
+        self.play(
+            MoveAlongPath(maya, path),
+            maya.wave_animation(),
+            run_time=3
+        )
+        
+        # Add the voiceover
+        with self.voiceover(text="Hi, I am Maya, your math wizard! Let's explore math together.") as tracker:
+            # Sync animations with speech
+            self.play(
+                maya.talk(),
+                run_time=0.5
+            )
+            self.play(
+                maya.talk(),
+                run_time=0.5
+            )
+            self.play(
+                maya.talk(),
+                run_time=0.5
+            )
+            self.play(
+                maya.blink(),
+                run_time=0.3
+            )
+            
+        # Hold the final pose
+        self.wait(0.5)
 
 class ProblemIntroduction(BaseScene):
     def construct(self):
@@ -565,8 +572,8 @@ class TeamRegroup(BaseScene):
         equipment = VGroup(
             Rectangle(height=0.5, width=0.3),  # Sensor
             Triangle(color=Colors.TEXT_LIGHT),  # Stand
-            Circle(radius=0.2)  # Detector
-        ).arrange(RIGHT, buff=0.2)
+            Circle(radius=0.2)  # Indicator
+        ).arrange(UP, buff=0.1)
         equipment.next_to(test_area, DOWN)
 
         with self.voiceover(text="""
@@ -2090,39 +2097,18 @@ class Episode1(BaseScene):
         scene_classes = [
             OpeningHook,
             TitleSequence,
-            # ProblemIntroduction,
-            # FirstAttempt,
-            # LearningSequence,
-            # TeamRegroup,
-            # ResearchMontage,
-            # BreakthroughMoment,
-            # PlanFormation,
-            # InitialTest,
-            # BPlotEscalation,
-            # TeamAdaptation,
-            # SecondaryChallenge,
-            # ConceptMastery,
-            # RisingAction,
-            # Complication,
-            # InnovativeSolution,
-            # BuildUp,
-            # PreClimax,
-            # ClimaxResolution,
-            # EpilogueHook
+            MayaIntroduction
         ]
 
         # Play each scene in sequence
         for i, SceneClass in enumerate(scene_classes):
-            # Create a black screen transition
             if i > 0:
-                self.clear()  # Clear previous scene
+                self.wait(0.5)  # Add a small pause between scenes
             
             # Create and run scene
             scene = SceneClass()
             scene_method = scene.construct.__get__(self, self.__class__)
-            scene_method()  # Run the scene's construct method in our context
-            
-            self.wait(0.25)  # Wait between scenes
+            scene_method()
 
 # Configure for 16:9 format
 config.frame_height = 9
@@ -2137,6 +2123,9 @@ class Colors:
     MARCUS_GREEN = "#4CAF50"
     MAYA_GOLD = "#FFD700"
     TEXT_LIGHT = "#FFFFFF"
+    ORBITAL_PURPLE = "#9B4DCA"  # Brighter purple for outer orbital
+    ORBITAL_BLUE = "#29B6F6"    # Light blue for inner orbital
+    EYE_WHITE = "#FFFFFF"       # White for eye fills
 
 class ThoughtBubble(VGroup):
     def __init__(self, scale_factor=1, **kwargs):
@@ -2171,7 +2160,6 @@ class ThoughtBubble(VGroup):
         return self[0].get_center()
 
 if __name__ == "__main__":
-    # Set Manim configuration
     config.update({
         "quality": "high",
         "frame_rate": 60,
@@ -2180,12 +2168,9 @@ if __name__ == "__main__":
         "output_file": "episode_1",
         "preview": True,
         "format": "mp4",
-        "write_to_movie": True
+        "write_to_movie": True,
+        "flush_cache": True
     })
     
-    # Load environment variables and set OpenAI API key
-    load_dotenv()
-    
-    # Create and render the scene directly
     scene = Episode1()
     scene.render() 
