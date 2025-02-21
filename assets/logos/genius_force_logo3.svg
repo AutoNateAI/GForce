@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <!-- Logo 3: "The Dynamic Stars" - Energetic star formation with modern typography -->
+  <defs>
+    <linearGradient id="star-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF4081"/>
+      <stop offset="100%" style="stop-color:#FF9100"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Star formation -->
+  <path d="M200,40 L220,90 L275,90 L230,120 L250,170 L200,140 L150,170 L170,120 L125,90 L180,90 Z" 
+        fill="url(#star-gradient)" stroke="#333" stroke-width="2"/>
+  
+  <!-- Smaller decorative stars -->
+  <path d="M140,60 L150,80 L170,80 L155,95 L160,115 L140,105 L120,115 L125,95 L110,80 L130,80 Z" 
+        fill="#FFD700" transform="scale(0.5)"/>
+  <path d="M260,60 L270,80 L290,80 L275,95 L280,115 L260,105 L240,115 L245,95 L230,80 L250,80 Z" 
+        fill="#FFD700" transform="scale(0.5) translate(200,0)"/>
+  
+  <!-- Text with modern styling -->
+  <text x="200" y="160" font-family="Arial Black" font-size="28" fill="#333" text-anchor="middle" style="letter-spacing: 2px">
+    <tspan style="fill: #FF4081">GENIUS</tspan>
+    <tspan x="200" y="185" style="fill: #FF9100">FORCE</tspan>
+  </text>
+</svg>

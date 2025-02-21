@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <!-- Logo 1: "The Brain Burst" - A stylized brain with lightning bolts -->
+  <defs>
+    <linearGradient id="brain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B2FBF"/>
+      <stop offset="100%" style="stop-color:#3F51B5"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Brain shape -->
+  <path d="M200,50 C260,50 300,90 300,140 C300,180 260,190 200,190 C140,190 100,180 100,140 C100,90 140,50 200,50" 
+        fill="url(#brain-gradient)" stroke="#333" stroke-width="3"/>
+  
+  <!-- Lightning bolts -->
+  <path d="M160,80 L140,120 L170,110 L150,150" 
+        stroke="#FFD700" stroke-width="4" fill="none"/>
+  <path d="M240,80 L260,120 L230,110 L250,150" 
+        stroke="#FFD700" stroke-width="4" fill="none"/>
+  
+  <!-- Text -->
+  <text x="200" y="130" font-family="Arial Black" font-size="24" fill="white" text-anchor="middle">GENIUS</text>
+  <text x="200" y="160" font-family="Arial Black" font-size="24" fill="white" text-anchor="middle">FORCE</text>
+</svg>

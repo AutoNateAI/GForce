@@ -5,6 +5,7 @@ from manim.utils.rate_functions import ease_in_cubic, ease_out_cubic, smooth, li
 import sys
 import os
 import numpy as np
+from PIL import Image
 
 # Add project root to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,41 +24,45 @@ class GeniusForceIntro(VoiceoverScene):
             width=16,
             height=9,
             fill_color="#1A1B2E",  # Dark blue-gray
-            fill_opacity=1,
+            fill_opacity=0.5,  # Make it semi-transparent
             stroke_width=0
         )
         return background
 
     def construct(self):
-        # Create and add the background
-        background = self.create_background()
-        self.add(background)
+        # Set scene background color
+        self.camera.background_color = "#1A1B2E"
 
         # Set up narrator voice (Ash)
         self.set_speech_service(OpenAIService(voice="alloy", model="tts-1"))
         
-        # Create title text
-        title = Text("GENIUS FORCE", font_size=72, color="#60A5FA", weight=BOLD)
-        subtitle = Text("Where Learning Comes to Life!", font_size=36, color=BLUE_B)
-        subtitle.next_to(title, DOWN)
-        title_group = VGroup(title, subtitle)
+        # Create and display the Genius Force logo
+        logo = ImageMobject(
+            "assets/logos/png/genius_force_official_500px.png"
+        ).set_height(4)
+        logo.scale(0.1)  # Start very small
+        logo.move_to(ORIGIN)
+        
+        # Add to scene
+        self.add(logo)
         
         # Epic intro
         with self.voiceover(text="In a world where learning meets adventure..."):
+            # Animate the logo entrance with a growth effect
             self.play(
-                Write(title, run_time=2),
-                Write(subtitle, run_time=2)
+                logo.animate.scale(15),  # Scale from small to full size
+                run_time=2,
+                rate_func=smooth
             )
-        
-        # Move title up
-        self.play(
-            title_group.animate.scale(0.5).to_edge(UP, buff=0.2),
-            run_time=1
-        )
+            self.wait(0.5)
+            self.play(
+                logo.animate.scale(0.5).to_edge(UP, buff=0.2),
+                run_time=1
+            )
         
         # Marcus Introduction
         marcus = Marcus(scale_factor=0.8)
-        marcus.move_to(LEFT * 4 + UP * 0.5)  # Move up slightly
+        marcus.move_to(LEFT * 4 + DOWN * 1)  # Moved down more
         
         with self.voiceover(text="Meet Marcus, our energy expert! He'll show us how light, radio waves, and all kinds of invisible energy work in our everyday lives!"):
             self.play(FadeIn(marcus, shift=LEFT))
@@ -85,7 +90,7 @@ class GeniusForceIntro(VoiceoverScene):
         
         # Maya Introduction
         maya = Maya(scale_factor=0.8)
-        maya.move_to(ORIGIN + UP * 0.5)  # Move up slightly
+        maya.move_to(ORIGIN + DOWN * 1)  # Moved down more
         
         # Switch back to narrator
         self.set_speech_service(OpenAIService(voice="alloy", model="tts-1"))
@@ -104,13 +109,13 @@ class GeniusForceIntro(VoiceoverScene):
         
         # Sage Introduction
         sage = Sage(scale_factor=0.8)
-        sage.move_to(RIGHT * 4 + UP * 0.5)  # Move up slightly
+        sage.move_to(RIGHT * 4 + DOWN * 1)  # Moved down more
         shadow = sage.get_shadow()
         shadow.next_to(sage, DOWN, buff=0.1)
         
         # Switch back to narrator
         self.set_speech_service(OpenAIService(voice="alloy", model="tts-1"))
-        with self.voiceover(text="And finally, meet Sage, our tech wizard! They'll help us build amazing gadgets and understand how our favorite devices work!"):
+        with self.voiceover(text="And finally, meet Sage, our tech wizard! He'll help us build amazing gadgets and understand how our favorite devices work!"):
             self.play(FadeIn(sage, shift=RIGHT), FadeIn(shadow))
         
         # Switch to Sage's voice
@@ -161,20 +166,21 @@ class GeniusForceIntro(VoiceoverScene):
         )
         
         # Final group shot
-        with self.voiceover(text="Together, they are... the GENIUS FORCE! Join them on their incredible journey of discovery!"):
-            # Move characters closer together
+        with self.voiceover(text="Together, they are the GENIUS FORCE! Join them on their incredible journey of discovery!"):
+            # Fade out characters
             self.play(
-                marcus.animate.shift(RIGHT * 2),
-                maya.animate.shift(UP * 0.5),
-                sage.animate.shift(LEFT * 2),
-                shadow.animate.shift(LEFT * 2),
+                FadeOut(marcus),
+                FadeOut(maya),
+                FadeOut(sage),
+                FadeOut(shadow),
                 run_time=1
             )
             
-            # Move title below characters
+            # Move logo back to center and scale up, but position it higher
             self.play(
-                title_group.animate.scale(0.8).next_to(VGroup(marcus, maya, sage), DOWN, buff=1),
-                run_time=1
+                logo.animate.scale(2).move_to(UP * 1.5),  # Move logo higher
+                run_time=1.5,
+                rate_func=smooth
             )
             
             # Create and animate concept words
@@ -183,44 +189,22 @@ class GeniusForceIntro(VoiceoverScene):
                 self.create_concept_text("Technology", GREEN),
                 self.create_concept_text("Math", RED),
                 self.create_concept_text("Energy", YELLOW)
-            ).arrange(RIGHT, buff=0.8)  # Reduced buffer between words
-            concepts.scale(0.6)  # Scale down the words
-            concepts.next_to(title_group, DOWN, buff=0.5)
+            ).arrange(RIGHT, buff=1.2)  # Increased spacing between words
+            concepts.scale(0.8)  # Made text larger
+            concepts.move_to(DOWN * 2)  # Move concepts lower for more separation
             
             # Animate concepts appearing with glowing effect
             for concept in concepts:
                 self.play(
                     FadeIn(concept, scale=1.5),
-                    concept.animate.set_opacity(0.8),
+                    concept.animate.set_opacity(1),  # Full opacity
                     run_time=0.3
                 )
             
-            # Add final flourish
-            self.play(
-                marcus.blink(),
-                maya.blink(),
-                sage.blink(),
-                run_time=0.3
-            )
+            # Hold the final frame
+            self.wait(1)
             
-            # Create sparkle effects around the group
-            for _ in range(5):
-                sparkle = Star(color=WHITE, fill_opacity=1)
-                sparkle.scale(0.2)
-                start_pos = np.array([
-                    np.random.uniform(-4, 4),
-                    np.random.uniform(-2, 2),
-                    0
-                ])
-                sparkle.move_to(start_pos)
-                self.play(
-                    FadeIn(sparkle, scale=2),
-                    sparkle.animate.scale(0),
-                    rate_func=smooth,
-                    run_time=0.3
-                )
-            
-            # Fade out
+            # Fade out everything
             self.play(
                 *[FadeOut(mob) for mob in self.mobjects],
                 run_time=1
